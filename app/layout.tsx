@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Barlow_Condensed } from "next/font/google";
+// eslint-disable-next-line camelcase
+import {
+  Inter,
+  // eslint-disable-next-line camelcase
+  Big_Shoulders_Display,
+} from "next/font/google";
 import "./globals.css";
 import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
-const barlowCondensed = Barlow_Condensed({
+const pollyGlot = Big_Shoulders_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["700"],
 });
 
 export const metadata: Metadata = {
@@ -21,9 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${pollyGlot.className} ${inter.className} `}>
+        {children}
+      </body>
     </html>
   );
 }
 
-export { inter, barlowCondensed };
+export { inter, pollyGlot };
