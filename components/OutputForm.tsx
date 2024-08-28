@@ -1,14 +1,26 @@
 import React from "react";
-
-interface Props {
-  setIsTranslated: (bold: boolean) => void;
+interface OutputFormProps {
+  result: string;
+  setIsTranslated: (value: boolean) => void;
+  prompt: string;
+  setPrompt: (value: string) => void;
+  setLanguage: (value: string) => void;
 }
 
-const OutputForm = ({ setIsTranslated }: Props) => {
+const OutputForm = ({
+  setIsTranslated,
+  prompt,
+  result,
+  setPrompt,
+  setLanguage,
+}: OutputFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsTranslated(false);
+    setPrompt("");
+    setLanguage("french");
   };
+
   return (
     <div className="flex items-center justify-center p-4">
       <form
@@ -24,8 +36,10 @@ const OutputForm = ({ setIsTranslated }: Props) => {
             Original Text 👇
           </label>
           <textarea
+            disabled
+            value={prompt}
             id="textToTranslate"
-            className="h-28 rounded-lg bg-gray-200 p-2 outline-none"
+            className="h-28 rounded-lg bg-gray-200 p-2 font-inter font-medium outline-none"
           ></textarea>
         </div>
         <div className="mt-5 flex flex-col gap-2">
@@ -36,8 +50,10 @@ const OutputForm = ({ setIsTranslated }: Props) => {
             Your translation 👇
           </label>
           <textarea
+            value={result}
+            disabled
             id="textToTranslate"
-            className="h-28 rounded-lg bg-gray-200 p-2 outline-none"
+            className="h-28 rounded-lg bg-gray-200 p-2 font-inter font-medium outline-none"
           ></textarea>
         </div>
         <button className="mt-3 rounded-lg bg-[#035A9D] py-2 font-inter text-2xl text-white">
